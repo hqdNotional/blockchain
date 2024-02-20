@@ -32,7 +32,7 @@ both on `rpc` and `snapshot`
 supervisorctl stop chain
 cd
 wget https://raw.githubusercontent.com/notional-labs/cosmosia/main/rpc/scripts/upgrading.sh
-sh ./upgrading $NEW_VERSION
+sh ./upgrading.sh $NEW_VERSION
 
 ```
 Start chain in another session
