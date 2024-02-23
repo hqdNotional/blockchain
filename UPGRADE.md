@@ -11,10 +11,6 @@ Find `nodes` that running `containers`:
 docker service ps $SERVICE_NAME
 ```
 ### 2. Configure environment variable
-Chain:
-```
-export CHAIN=
-```
 
 New version:
 ```
@@ -22,12 +18,33 @@ export NEW_VERSION=
 ```
 
 ### 3. Run bash ( rpc & snapshot )
-Check env var:
+
+**Rpc**:
+
+Check environment variable:
+```
+cat ~/env.sh
+```
+```
+supervisorctl stop chain
+cd
+wget https://raw.githubusercontent.com/notional-labs/cosmosia/main/rpc/scripts/upgrading.sh
+sh ./upgrading.sh $NEW_VERSION
+
+```
+Start chain in another session
+
+```
+supervisorctl start chain
+```
+
+**Snapshot**:
+
+Check environment variable:
 ```
 cat ~/env.sh
 ```
 
-both on `rpc` and `snapshot`
 ```
 supervisorctl stop chain
 cd
@@ -42,17 +59,21 @@ supervisorctl start chain
 ```
 
 ### 4. Update registry
-Go to github `pull` fork repo
+
+Go to github `pull` fork repo [cosmosia](https://github.com/notional-labs/cosmosia) ->> `Sync Fork`
 
 ```
 git pull
 ```
-
+Chain:
+```
+export CHAIN=
+```
 ```
 vi ~/cosmosia/data/$CHAIN.ini
 ```
 
 Update:
-* version
+* `version`
 
-Then commit > push > pull > merge
+Then `commit` ->> `push` ->> `contribute` ->> `pull request` ->> `merge`
