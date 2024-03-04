@@ -3,24 +3,26 @@
 ### 1. Find containers and nodes
 Find `containers` inside `service`:
 ```
-docker service ps | grep $SERVICE
+docker service ls | grep $SERVICE
 ```
 
 Find `nodes` that running `containers`:
 ```
 docker service ps $SERVICE_NAME
 ```
-### 2. Configure environment variable
+
+### 3. Run bash ( rpc & snapshot )
+
+**Rpc**:
+```
+killall crond
+```
 
 New version:
 ```
 export NEW_VERSION=
 ```
 
-### 3. Run bash ( rpc & snapshot )
-
-**Rpc**:
-
 Check environment variable:
 ```
 cat ~/env.sh
@@ -32,14 +34,33 @@ wget https://raw.githubusercontent.com/notional-labs/cosmosia/main/rpc/scripts/u
 sh ./upgrading.sh $NEW_VERSION
 
 ```
+Wait till synced.
+
 Start chain in another session
 
 ```
 supervisorctl start chain
+```
+
+```
+crond
+```
+
+Edit `env.sh` to new version:
+```
+pacman -Sy --noconfirm vim
+vim $HOME/env.sh
 ```
 
 **Snapshot**:
+```
+killall crond
+```
 
+New version:
+```
+export NEW_VERSION=
+```
 Check environment variable:
 ```
 cat ~/env.sh
@@ -52,12 +73,23 @@ wget https://raw.githubusercontent.com/notional-labs/cosmosia/main/rpc/scripts/u
 sh ./upgrading.sh $NEW_VERSION
 
 ```
+Wait till synced.
+
 Start chain in another session
 
 ```
 supervisorctl start chain
 ```
 
+```
+crond
+```
+
+Edit `env.sh` to new version:
+```
+pacman -Sy --noconfirm vim
+vim $HOME/env.sh
+```
 ### 4. Update registry
 
 Go to github `pull` fork repo [cosmosia](https://github.com/notional-labs/cosmosia) ->> `Sync Fork`
