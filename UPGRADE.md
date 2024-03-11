@@ -1,6 +1,11 @@
 # Upgrade version
 
 ### 1. Find containers and nodes
+Setup env variable:
+```
+export SERVICE=
+```
+
 Find `containers` inside `service`:
 ```
 docker service ls | grep $SERVICE
@@ -14,12 +19,10 @@ docker service ps $SERVICE_NAME
 ### 3. Run bash ( rpc & snapshot )
 
 **Rpc**:
-```
-killall crond
-```
 
 New version:
 ```
+killall crond
 export NEW_VERSION=
 ```
 
@@ -28,6 +31,7 @@ Check environment variable:
 cat ~/env.sh
 ```
 ```
+rm -rf $HOME/upgrading.*
 supervisorctl stop chain
 cd
 wget https://raw.githubusercontent.com/notional-labs/cosmosia/main/rpc/scripts/upgrading.sh
@@ -36,29 +40,23 @@ sh ./upgrading.sh $NEW_VERSION
 ```
 Wait till synced.
 
-Start chain in another session
-
+Check logs
 ```
-supervisorctl start chain
-```
-
-```
-crond
+tail -f -n100 /var/log/chain.err.log
 ```
 
 Edit `env.sh` to new version:
 ```
+crond
 pacman -Sy --noconfirm vim
 vim $HOME/env.sh
 ```
 
 **Snapshot**:
-```
-killall crond
-```
 
 New version:
 ```
+killall crond
 export NEW_VERSION=
 ```
 Check environment variable:
@@ -67,6 +65,7 @@ cat ~/env.sh
 ```
 
 ```
+rm -rf $HOME/upgrading.*
 supervisorctl stop chain
 cd
 wget https://raw.githubusercontent.com/notional-labs/cosmosia/main/rpc/scripts/upgrading.sh
@@ -75,18 +74,14 @@ sh ./upgrading.sh $NEW_VERSION
 ```
 Wait till synced.
 
-Start chain in another session
-
+Check logs
 ```
-supervisorctl start chain
+tail -f -n100 /var/log/chain.err.log
 ```
 
+Turn on crond and edit `env.sh` to new version:
 ```
 crond
-```
-
-Edit `env.sh` to new version:
-```
 pacman -Sy --noconfirm vim
 vim $HOME/env.sh
 ```
