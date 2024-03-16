@@ -17,6 +17,17 @@ docker service ps $(docker service ls | grep $service | grep -E "snapshot_$servi
 read -p "Enter service name [bitsong]:" service
 docker exec -it $(docker ps -a | grep $service | grep -E "rpc_$service\\_" | awk '{print $1}') /bin/bash
 ```
+Restore [URL](https://snapshot.notional.ventures/)
+```
+source $HOME/env.sh
+rm -rf $node_home/wasm
+rm -rf $node_home/data
+read -p "Enter snapshot link [URL]:" url
+cd $node_home
+wget -O - "$url" |pigz -dc |tar -xf -
+supervisorctl start chain
+curl localhost:26657/status |jq
+```
 
 New version:
 ```
@@ -40,7 +51,6 @@ Check status:
 ```
 curl localhost:26657/status | jq
 ```
-
 Check logs
 ```
 tail -f -n100 /var/log/chain.err.log
@@ -57,6 +67,18 @@ vim $HOME/env.sh
 ```
 read -p "Enter service name [bitsong]:" service
 docker exec -it $(docker ps -a | grep $service | grep -E "snapshot_$service\." | awk '{print $1}') /bin/bash
+```
+
+Restore [URL](https://snapshot.notional.ventures/)
+```
+source $HOME/env.sh
+rm -rf $node_home/wasm
+rm -rf $node_home/data
+read -p "Enter snapshot link [URL]:" url
+cd $node_home
+wget -O - "$url" |pigz -dc |tar -xf -
+supervisorctl start chain
+curl localhost:26657/status |jq
 ```
 
 New version:
