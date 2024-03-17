@@ -1,4 +1,4 @@
-echo "step 5"
+echo "Sync checking"
 
 catching_up="true"
 while [[ "$catching_up" != "false" ]]; do
