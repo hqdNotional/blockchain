@@ -63,6 +63,13 @@ pacman -Sy --noconfirm vim
 vim $HOME/env.sh
 ```
 
+```
+cd
+rm -rf $HOME/check_sync.sh
+wget https://raw.githubusercontent.com/hqdNotional/blockchain/main/check_sync.sh
+sh check_sync.sh
+```
+
 **Snapshot**:
 ```
 read -p "Enter service name [bitsong]:" service
@@ -115,6 +122,15 @@ crond
 pacman -Sy --noconfirm vim
 vim $HOME/env.sh
 ```
+
+Check sync:
+```
+cd
+rm -rf $HOME/check_sync.sh
+wget https://raw.githubusercontent.com/hqdNotional/blockchain/main/check_sync.sh
+sh check_sync.sh
+```
+
 ### 4. Update registry
 
 Go to github `pull` fork repo [cosmosia](https://github.com/notional-labs/cosmosia) ->> `Sync Fork`
