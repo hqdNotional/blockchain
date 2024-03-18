@@ -25,6 +25,8 @@ rm -rf $node_home/data
 read -p "Enter snapshot link [URL]:" url
 cd $node_home
 wget -O - "$url" |pigz -dc |tar -xf -
+rm -rf $node_home/data1
+cp -rf $node_home/data $node_home/data1
 supervisorctl start chain
 curl localhost:26657/status |jq
 ```
@@ -84,6 +86,8 @@ rm -rf $node_home/data
 read -p "Enter snapshot link [URL]:" url
 cd $node_home
 wget -O - "$url" |pigz -dc |tar -xf -
+rm -rf $node_home/data1
+cp -rf $node_home/data $node_home/data1
 supervisorctl start chain
 curl localhost:26657/status |jq
 ```
