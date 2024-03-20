@@ -32,7 +32,6 @@ cat ~/env.sh
 ```
 ```
 rm -rf $HOME/upgrading.*
-supervisorctl stop chain
 cd
 wget https://raw.githubusercontent.com/notional-labs/cosmosia/main/rpc/scripts/upgrading.sh
 sh ./upgrading.sh $NEW_VERSION
@@ -66,7 +65,6 @@ cat ~/env.sh
 
 ```
 rm -rf $HOME/upgrading.*
-supervisorctl stop chain
 cd
 wget https://raw.githubusercontent.com/notional-labs/cosmosia/main/rpc/scripts/upgrading.sh
 sh ./upgrading.sh $NEW_VERSION

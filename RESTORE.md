@@ -41,7 +41,6 @@ cat ~/env.sh
 Upgrade use script:
 ```
 rm -rf $HOME/upgrading.*
-supervisorctl stop chain
 cd
 wget https://raw.githubusercontent.com/notional-labs/cosmosia/main/rpc/scripts/upgrading.sh
 sh ./upgrading.sh $newversion
@@ -102,7 +101,6 @@ cat ~/env.sh
 Upgrade use script:
 ```
 rm -rf $HOME/upgrading.*
-supervisorctl stop chain
 cd
 wget https://raw.githubusercontent.com/notional-labs/cosmosia/main/rpc/scripts/upgrading.sh
 sh ./upgrading.sh $newversion
