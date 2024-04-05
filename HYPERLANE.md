@@ -174,3 +174,36 @@ docker run \
   --checkpointSyncer.type s3 \
   --checkpointSyncer.bucket hyperlane-validator-signatures-<your_chain_name> \
 ```
+
+###### 4. Relayer
+Running a Relayer `requires` the following:
+* **An RPC node**: Validators make simple view calls to read merkle roots from the Mailbox contract on the chain they are validating for.
+* **A secure signing key**: 
+  * Validators use this key to sign the Mailbox's latest merkle root. Securing this key is important. If it is compromised, attackers can attempt to falsify messages, causing the Validator to be slashed.
+  * The Hyperlane Validator agent currently supports signing with AWS KMS keys that are accessed via API keys/secrets as well as hexadecimal plaintext keys for testing. See more under agent keys
+* **Publicly readable storage**: Validators write their `signatures` off-chain to `publicly accessible`, `highly available`, storage, so that they can be aggregated by the Relayer.
+
+Configuration:
+* `--relayChains`: Comma separated names of the `origin` and `destination` chains to relay messages `between`. For example: `ethereum`,`polygon`,`avalanche`
+* `--db`: The `path` to where the Relayer should `write persistent data` to `disk`. Ensure this path to be persistent when using `cloud setups`. When using Docker, make sure to mount the persistent path/volume into the container.
+* `--allowLocalCheckpointSyncers`: If true, this will allow the `Relayer` to look for `Validator signatures` on the Relayer's `local filesystem`. In a `production environment`, this should be false. If you're running a Validator on the `same machine` by following the Validator local setup instructions, set this to true so that your Relayer can access the local Validator signatures.
+
+AWS:
+* `--defaultSigner.type`: aws
+* `--defaultSigner.id`: The alias of your `Relayer's AWS KMS key`, prefixed with `alias/`. For example: `alias/hyperlane-relayer-1`.
+
+Start relaying
+```
+docker run \
+  -it \
+  -e AWS_ACCESS_KEY_ID=ABCDEFGHIJKLMNOP \
+  -e AWS_SECRET_ACCESS_KEY=xX-haha-nice-try-Xx \
+  --mount ... \
+  gcr.io/abacus-labs-dev/hyperlane-agent:3adc0e9-20240319-152359 \
+  ./relayer \
+  --db /hyperlane_db \
+  --relayChains <chain_1_name>,<chain_2_name> \
+  --defaultSigner.type aws \
+  --defaultSigner.id alias/hyperlane-relayer-1 \
+  --defaultSigner.region us-east-1 \
+```
