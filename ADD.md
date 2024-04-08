@@ -33,7 +33,7 @@ vi ~/cosmosia/data/$CHAIN.ini
 * `version`= `$RECOMMENDED_VERSION` ( **cosmos/$NEW_CHAIN/chain.json** )
 * `daemon_name`= `$DAEMON_NAME`( **cosmos/$NEW_CHAIN/chain.json** )
 * `node_home`= `$NODE_HOME`( **cosmos/$NEW_CHAIN/chain.json** )
-* `start_flag`= `$seeds` ( **cosmos/$NEW_CHAIN/chain.json** ) [ *format: --p2p.$seed@$location,@@* ]
+* `start_flag`= `$seeds` ( **cosmos/$NEW_CHAIN/chain.json** ) [ *format: --p2p.seeds=$seed@$location,@@* ]
 
 `@@` mean `repeat`
 
@@ -138,7 +138,7 @@ Goto [mainnet-snapshot](https://www.polkachu.com/tendermint_snapshots) to downlo
 
 Pull `peppledb`
 ```
-git pull https://github.com/notional-labs/level2pebble $HOME/level2pepple
+git clone https://github.com/notional-labs/level2pebble $HOME/level2pepple
 cd $HOME/level2pepple
 make install
 ```
@@ -158,7 +158,6 @@ supervisorctl start chain
 Curl to check:
 ```
 curl localhost:26657/status | jq
-
 ```
 
 **Stop Chain**
@@ -184,6 +183,7 @@ ssh to `manager node`:
 ```
 export $CHAIN=
 ```
+
 ```
 export $NUMBER=
 ```
