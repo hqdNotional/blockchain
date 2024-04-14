@@ -29,11 +29,15 @@ config = "https://raw.githubusercontent.com/notional-labs/cosmosia/main/data/$CH
 ```
 vi ~/cosmosia/data/$CHAIN.ini
 ```
-* `git_repo`= `$REAL_NEW_CHAIN_REPO_GITHUB_LINK` ( **cosmos/$NEW_CHAIN/chain.json** )
-* `version`= `$RECOMMENDED_VERSION` ( **cosmos/$NEW_CHAIN/chain.json** )
-* `daemon_name`= `$DAEMON_NAME`( **cosmos/$NEW_CHAIN/chain.json** )
-* `node_home`= `$NODE_HOME`( **cosmos/$NEW_CHAIN/chain.json** )
-* `start_flag`= `$seeds` ( **cosmos/$NEW_CHAIN/chain.json** ) [ *format: --p2p.seeds=$seed@$location,@@* ]
+* `git_repo` = `$REAL_NEW_CHAIN_REPO_GITHUB_LINK` ( **cosmos/$NEW_CHAIN/chain.json** )
+* `version` = `$RECOMMENDED_VERSION` ( **cosmos/$NEW_CHAIN/chain.json** )
+* `daemon_name` = `$DAEMON_NAME`( **cosmos/$NEW_CHAIN/chain.json** )
+* `node_home` = `$NODE_HOME`( **cosmos/$NEW_CHAIN/chain.json** )
+* `start_flag` = `$seeds` ( **cosmos/$NEW_CHAIN/chain.json** ) [ *format: --p2p.seeds=$seed@$location,@@* ]
+* `snapshot_prune` = `cosmos-pruner`
+* `network` = `cosmos-pruner`
+* `db_backend` = `pebbledb`
+* `build_script` = `link`
 
 `@@` mean `repeat`
 
@@ -84,7 +88,7 @@ wget http://cosmosia26.notional.ventures:11111/cosmoshub/chain.json
 Find it on `manager node`:
 ```
 docker service ls | grep static
-docker service proxy_static
+docker service ps proxy_static
 ```
 
 **SSH**
