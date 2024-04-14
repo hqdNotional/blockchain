@@ -36,8 +36,8 @@ vi ~/cosmosia/data/$CHAIN.ini
 * `start_flag` = `$seeds` ( **cosmos/$NEW_CHAIN/chain.json** ) [ *format: --p2p.seeds=$seed@$location,@@* ]
 * `snapshot_prune` = `cosmos-pruner`
 * `network` = `cosmos-pruner`
-* `db_backend` = `pebbledb`
-* `build_script` = `link`
+* `db_backend` = `pebbledb` or `goleveldb`
+* `build_script` = `link` [BuildScript](https://github.com/notional-labs/cosmosia/tree/main/data/custom_build_scripts)
 
 `@@` mean `repeat`
 
