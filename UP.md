@@ -25,10 +25,14 @@ killall crond
 cat ~/env.sh
 ```
 
-Upgrade use script:
+Install and start new tmux session:
 ```
 pacman -Sy --noconfirm tmux
 tmux new -s upgrade
+```
+
+Upgrade use script:
+```
 rm -rf $HOME/upgrading.*
 cd
 wget https://raw.githubusercontent.com/notional-labs/cosmosia/main/rpc/scripts/upgrading.sh
@@ -60,6 +64,12 @@ read -p "Enter service name [bitsong]:" service
 docker exec -it $(docker ps -a | grep $service | grep -E "snapshot_$service\." | awk '{print $1}') /bin/bash
 ```
 
+Install and start new tmux session:
+```
+pacman -Sy --noconfirm tmux
+tmux new -s upgrade
+```
+
 New version:
 ```
 read -p "Enter new version [v2.0.0]:" newversion
@@ -69,8 +79,6 @@ cat ~/env.sh
 
 Upgrade use script:
 ```
-pacman -Sy --noconfirm tmux
-tmux new -s upgrade
 rm -rf $HOME/upgrading.*
 cd
 wget https://raw.githubusercontent.com/notional-labs/cosmosia/main/rpc/scripts/upgrading.sh
