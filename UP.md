@@ -27,6 +27,8 @@ cat ~/env.sh
 
 Upgrade use script:
 ```
+pacman -Sy --noconfirm tmux
+tmux new -s upgrade
 rm -rf $HOME/upgrading.*
 cd
 wget https://raw.githubusercontent.com/notional-labs/cosmosia/main/rpc/scripts/upgrading.sh
@@ -67,6 +69,8 @@ cat ~/env.sh
 
 Upgrade use script:
 ```
+pacman -Sy --noconfirm tmux
+tmux new -s upgrade
 rm -rf $HOME/upgrading.*
 cd
 wget https://raw.githubusercontent.com/notional-labs/cosmosia/main/rpc/scripts/upgrading.sh
