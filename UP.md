@@ -21,6 +21,7 @@ Install and start new tmux session:
 ```
 pacman -Sy --noconfirm tmux
 tmux new -s upgrade
+tmux attach -t upgrade
 ```
 
 New version:
@@ -69,6 +70,7 @@ Install and start new tmux session:
 ```
 pacman -Sy --noconfirm tmux
 tmux new -s upgrade
+tmux attach -t upgrade
 ```
 
 New version:
