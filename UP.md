@@ -18,17 +18,17 @@ read -p "Enter service name [bitsong]:" service
 docker exec -it $(docker ps -a | grep $service | grep -E "rpc_$service\\_" | awk '{print $1}') /bin/bash
 ```
 
+Install and start new tmux session:
+```
+pacman -Sy --noconfirm tmux
+tmux new -s upgrade
+```
+
 New version:
 ```
 read -p "Enter new version [v2.0.0]:" newversion
 killall crond
 cat ~/env.sh
-```
-
-Install and start new tmux session:
-```
-pacman -Sy --noconfirm tmux
-tmux new -s upgrade
 ```
 
 Upgrade use script:
