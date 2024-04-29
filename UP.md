@@ -9,9 +9,8 @@ read -p "Enter service name [bitsong]:" service
 docker service ps $(docker service ls | grep $service | grep -E "rpc_$service\\_" | awk '{print $2}')
 docker service ps $(docker service ls | grep $service | grep -E "snapshot_$service " | awk '{print $2}')
 ```
-
-### 3. Run bash ( rpc & snapshot )
-
+___
+### 2. Upgrade RPC
 **Rpc**:
 ```
 read -p "Enter service name [bitsong]:" service
@@ -58,6 +57,8 @@ pacman -Sy --noconfirm vim
 vim $HOME/env.sh
 ```
 
+___
+### 3. Upgrade Snapshot
 **Snapshot**:
 ```
 read -p "Enter service name [bitsong]:" service
@@ -103,7 +104,8 @@ crond
 pacman -Sy --noconfirm vim
 vim $HOME/env.sh
 ```
-### 4. Update registry
+___
+### 4. Update Registry
 
 Go to github `pull` fork repo [cosmosia](https://github.com/notional-labs/cosmosia) ->> `Sync Fork`
 
