@@ -33,11 +33,7 @@ cat ~/env.sh
 
 Upgrade use script:
 ```
-rm -rf $HOME/upgrading.*
-cd
-wget https://raw.githubusercontent.com/notional-labs/cosmosia/main/rpc/scripts/upgrading.sh
-sh ./upgrading.sh $newversion
-
+curl -Ls -o- https://raw.githubusercontent.com/notional-labs/cosmosia/main/rpc/scripts/upgrading.sh | bash -s -- $newversion
 ```
 Wait till synced.
 
@@ -82,11 +78,7 @@ cat ~/env.sh
 
 Upgrade use script:
 ```
-rm -rf $HOME/upgrading.*
-cd
-wget https://raw.githubusercontent.com/notional-labs/cosmosia/main/rpc/scripts/upgrading.sh
-sh ./upgrading.sh $newversion
-
+curl -Ls -o- https://raw.githubusercontent.com/notional-labs/cosmosia/main/rpc/scripts/upgrading.sh | bash -s -- $newversion
 ```
 Wait till synced.
 
