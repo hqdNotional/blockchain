@@ -175,9 +175,7 @@ sh snapshot_cronjob.sh
 
 **Crond**
 ```
-ps -aux
 crond
-exit
 ```
 
 **SSH**
