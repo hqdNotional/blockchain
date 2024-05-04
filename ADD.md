@@ -120,13 +120,16 @@ sh docker_service_create.sh $CHAIN
 
 **SSH**
 
-ssh to `node` that run `new chain`:
+ssh to `node` that run `new snapshot`:
+```
+read -p "Enter service name [bitsong]:" service
+docker exec -it $(docker ps -a | grep $service | grep -E "snapshot_$service\." | awk '{print $1}') /bin/bash
+```
+
 ```
 export CHAIN=
 ```
-```
-docker exec -it 
-```
+
 ```
 killall crond
 cd $HOME/$CHAIN
@@ -144,11 +147,10 @@ cd $HOME/level2pepple
 make install
 ```
 
-Download `peppeldb` script:
+Convert `data` script:
 ```
-cd
-wget https://raw.githubusercontent.com/notional-labs/cosmosia/main/snapshot/scripts/level2pebble_data.sh
-sh level2pebble_data.sh $HOME/.$CHAIN/data
+supervisorctl stop chain
+curl -Ls -o- https://raw.githubusercontent.com/notional-labs/cosmosia/main/snapshot/scripts/level2pebble_data.sh | bash -s -- $HOME/.$CHAIN/data
 ```
 
 **Start Chain**
