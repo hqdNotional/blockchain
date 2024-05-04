@@ -33,6 +33,7 @@ cat ~/env.sh
 
 Upgrade use script:
 ```
+curl -Ls -o- https://raw.githubusercontent.com/notional-labs/cosmosia/main/rpc/scripts/update_config.sh | bash -s -- 1
 curl -Ls -o- https://raw.githubusercontent.com/notional-labs/cosmosia/main/rpc/scripts/upgrading.sh | bash -s -- $newversion
 ```
 Wait till synced.
@@ -78,6 +79,7 @@ cat ~/env.sh
 
 Upgrade use script:
 ```
+curl -Ls -o- https://raw.githubusercontent.com/notional-labs/cosmosia/main/rpc/scripts/update_config.sh | bash -s -- 2
 curl -Ls -o- https://raw.githubusercontent.com/notional-labs/cosmosia/main/rpc/scripts/upgrading.sh | bash -s -- $newversion
 ```
 Wait till synced.
