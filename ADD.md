@@ -202,6 +202,12 @@ cd $HOME/cosmosia/load_balancer
 sh docker_service_create.sh $CHAIN rpc_$CHAIN_$NUMBER
 ```
 
+**Api_gateway**
+```
+cd $HOME/cosmosia/notionalapi/gateway
+sh docker_service_create.sh $CHAIN
+```
+
 **Proxy_public**
 ```
 cd $HOME/cosmosia/proxy/public
