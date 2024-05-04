@@ -68,8 +68,8 @@ touch data_20230202_172234.tar.gz
 Install and start new tmux session:
 ```
 pacman -Sy --noconfirm tmux
-tmux new -s upgrade
-tmux attach -t upgrade
+tmux new -s add
+tmux attach -t add
 ```
 
 Find it on `manager node`:
@@ -89,8 +89,8 @@ docker exec -it $(docker ps -a | grep $service | grep -E "proxy_static\\_" | awk
 **Edit nginx files**:
 ```
 pacman -Sy --noconfirm tmux
-tmux new -s upgrade
-tmux attach -t upgrade
+tmux new -s add
+tmux attach -t add
 pacman -Sy --noconfirm vim
 vim /usr/share/nginx/html/index.html /etc/nginx/redirect_snapshots.conf
 ```
@@ -102,6 +102,11 @@ nginx -s reload
 
 ### 5. Create new services ( snapshot, rpc, lb, apigw )
 **SSH**
+```
+pacman -Sy --noconfirm tmux
+tmux new -s add
+tmux attach -t add
+```
 
 ssh to `manager node`:
 ```
