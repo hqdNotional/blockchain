@@ -182,11 +182,11 @@ crond
 
 ssh to `manager node`:
 ```
-export $CHAIN=
+export CHAIN=
 ```
 
 ```
-export $NUMBER=
+export NUMBER=
 ```
 
 **RPC**
