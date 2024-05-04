@@ -115,7 +115,7 @@ export CHAIN=
 ```
 cd $HOME/cosmosia/snapshot
 git pull
-sh docker_service_create_snapshot.sh $CHAIN
+sh docker_service_create.sh $CHAIN
 ```
 
 **SSH**
