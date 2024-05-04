@@ -204,13 +204,13 @@ sh docker_service_create.sh $CHAIN rpc_$CHAIN_$NUMBER
 
 **Proxy_public**
 ```
-cd $HOME/cosmosia/proxy_public
+cd $HOME/cosmosia/proxy/public
 sh docker_service_create.sh
 ```
 
 **Proxy_internal**
 ```
-cd $HOME/cosmosia/proxy_internal
+cd $HOME/cosmosia/proxy/internal
 sh docker_service_create.sh
 ```
 
