@@ -72,6 +72,7 @@ wget http://cosmosia26.notional.ventures:11111/cosmoshub/chain.json
 ```
 
 **Edit file chain.json**
+
 * `CHAINJSON`:
   * `SERVER` [ from `chain_registry.ini` ]
   * `CHAIN` [ NEW NAME ( `new folder name` ) ]
@@ -104,17 +105,18 @@ docker service ps proxy_static
 
 ssh to `node` that running `proxy_static`
 ```
-docker exec -it $HASH /bin/bash
+docker exec -it $(docker ps -a | grep $service | grep -E "proxy_static\\_" | awk '{print $1}') /bin/bash
 ```
 
 **Edit nginx files**:
 ```
+pacman -Sy --noconfirm vim
 vim /usr/share/nginx/html/index.html /etc/nginx/redirect_snapshots.conf
 ```
 
 **Reload nginx**:
 ```
-nginx -reload
+nginx -s reload
 ```
 
 ### 5. Create new services ( snapshot, rpc, lb, apigw )
