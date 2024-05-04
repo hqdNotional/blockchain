@@ -1,45 +1,33 @@
 # ADD
-Eg: [ `mars` ]
 
-* `$CHAIN` = `mars`
-
-### 1. Update chain on notional-labs/cosmosia/data
-Go to github `pull` fork repo [cosmosia](https://github.com/notional-labs/cosmosia) ->> `Sync Fork`
-```
-git pull
-```
-**Open on browser**
-* `Its own github`. Eg: [mars](https://github.com/mars-protocol/hub)
-* `cosmos/chain-registry/$CHAIN/chain.json`. Eg: [cosmos-mars](https://github.com/cosmos/chain-registry/blob/master/mars/chain.json)
-* `Notional` cosmosia/data/chain_registry.ini Eg: [chain-registry](https://github.com/notional-labs/cosmosia/blob/main/data/chain_registry.ini)
 ```
 export CHAIN=
 ```
-**Add new config link**
+
 ```
-vi ~/cosmosia/data/chain_registry.ini
-```
-content:
-```
+cat << EOF | sudo tee -a data/chain_registry.ini
 [$CHAIN]
 config = "https://raw.githubusercontent.com/notional-labs/cosmosia/main/data/$CHAIN.ini"
+EOF
 ```
 
-**Add new config file**
 ```
-vi ~/cosmosia/data/$CHAIN.ini
+cat << EOF | sudo tee -a data/$CHAIN.ini
+git_repo = "https://github.com/nolus-protocol/nolus-core"
+version = "v0.5.3"
+daemon_name = "nolusd"
+node_home = "$HOME/.nolus"
+minimum_gas_prices = "0unls"
+start_flags = "--p2p.seeds=20e1000e88125698264454a884812746c2eb4807@seeds.lavenderfive.com:11956,ebc272824924ea1a27ea3183dd0b9ba713494f83@nolus-mainnet-seed.autostake.com:27016,8542cd7e6bf9d260fef543bc49e59be5a3fa9074@seed.publicnode.com:26656,400f3d9e30b69e78a7fb891f60d76fa3c73f0ecc@nolus.rpc.kjnodes.com:14359,cefe4a5394dc57f318547258c511a9a96aaeaa7b@seed-nolus.ibs.team:16665"
+snapshot_prune = "cosmos-pruner"
+network = "net5"
+db_backend = "pebbledb"
+EOF
 ```
-* `git_repo` = `$REAL_NEW_CHAIN_REPO_GITHUB_LINK` ( **cosmos/$NEW_CHAIN/chain.json** )
-* `version` = `$RECOMMENDED_VERSION` ( **cosmos/$NEW_CHAIN/chain.json** )
-* `daemon_name` = `$DAEMON_NAME`( **cosmos/$NEW_CHAIN/chain.json** )
-* `node_home` = `$NODE_HOME`( **cosmos/$NEW_CHAIN/chain.json** )
-* `start_flag` = `$seeds` ( **cosmos/$NEW_CHAIN/chain.json** ) [ *format: --p2p.seeds=$seed@$location,@@* ]
-* `snapshot_prune` = `cosmos-pruner`
-* `network` = `cosmos-pruner`
-* `db_backend` = `pebbledb` or `goleveldb`
-* `build_script` = `link` [BuildScript](https://github.com/notional-labs/cosmosia/tree/main/data/custom_build_scripts)
 
-`@@` mean `repeat`
+```
+vi data/$CHAIN.ini
+```
 
 Then `commit` ->> `push` ->> `contribute` ->> `pull request` ->> `merge`
 
@@ -52,37 +40,27 @@ ssh to `server` that will runs `new chain` Eg: `cosmosia6` on `chain_registry.in
 ```
 export CHAIN=
 ```
-```
-cd /mnt/data/snapshots
-mkdir $CHAIN
-cd $CHAIN
-```
 
 Get `chain.json`, `genesis.json`:
 * `genesis.json` from [cosmos/$NEW_CHAIN/chain.json](https://github.com/cosmos/chain-registr://github.com/cosmos/chain-registry)
 * `chain.json` from [http://cosmosia26.notional.ventures:11111/cosmoshub/chain.json](http://cosmosia26.notional.ventures:11111/cosmoshub/chain.json)
 
-**Download files**:
-```
-export GENESISJSON=
-```
-```
-wget $GENESISJSON
-wget http://cosmosia26.notional.ventures:11111/cosmoshub/chain.json
-```
-
 **Edit file chain.json**
 
-* `CHAINJSON`:
-  * `SERVER` [ from `chain_registry.ini` ]
-  * `CHAIN` [ NEW NAME ( `new folder name` ) ]
-  * `DATA_SIZE` = 0
-  * `VERSION`  = 0
-
-**Create fake snapshot**:
-
 ```
- touch data_20230202_172234.tar.gz
+cd /mnt/data/snapshots
+mkdir -p $CHAIN
+cd $CHAIN
+
+cat << EOF | sudo tee -a /mnt/data/snapshots/$CHAIN/chain.json
+{
+    "snapshot_url": "http://95.217.193.117:11111/$CHAIN/data_20230202_172234.tar.gz,
+    "file_size": 0,
+    "date_version": 0
+}
+EOF
+
+touch data_20230202_172234.tar.gz
 ```
 
 ### 4. Upgrade proxy static
@@ -110,6 +88,9 @@ docker exec -it $(docker ps -a | grep $service | grep -E "proxy_static\\_" | awk
 
 **Edit nginx files**:
 ```
+pacman -Sy --noconfirm tmux
+tmux new -s upgrade
+tmux attach -t upgrade
 pacman -Sy --noconfirm vim
 vim /usr/share/nginx/html/index.html /etc/nginx/redirect_snapshots.conf
 ```
