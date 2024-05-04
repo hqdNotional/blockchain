@@ -85,7 +85,16 @@ wget http://cosmosia26.notional.ventures:11111/cosmoshub/chain.json
 ```
 
 ### 4. Upgrade proxy static
+
+Install and start new tmux session:
+```
+pacman -Sy --noconfirm tmux
+tmux new -s upgrade
+tmux attach -t upgrade
+```
+
 Find it on `manager node`:
+
 ```
 docker service ls | grep static
 docker service ps proxy_static
