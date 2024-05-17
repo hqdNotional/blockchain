@@ -170,7 +170,68 @@ Remove backup data:
 rm -rf $HOME/backup
 ```
 
-### 5. Update Registry
+### 5. Archive sub snapshot
+**Archive sub snapshot**:
+```
+read -p "Enter service name [bitsong]:" service
+docker exec -it $(docker ps -a | grep $service | grep -E "snapshot_"$service"-archive-sub" | awk '{print $1}') /bin/bash
+```
+
+Install and start new tmux session:
+```
+pacman -Sy --noconfirm tmux
+tmux new -s upgrade
+tmux attach -t upgrade
+```
+
+Backup data:
+```
+cd
+sh $HOME/env.sh
+cp -R $node_home /root/backup
+```
+
+watch copy progress:
+```
+watch -n 1 du -sh $HOME/backup
+```
+
+```
+read -p "Enter new version [v2.0.0]:" newversion
+killall crond
+cat ~/env.sh
+```
+
+Upgrade use script:
+```
+curl -Ls -o- https://raw.githubusercontent.com/notional-labs/cosmosia/main/rpc/scripts/update_config.sh | bash -s -- 1
+curl -Ls -o- https://raw.githubusercontent.com/notional-labs/cosmosia/main/rpc/scripts/upgrading.sh | bash -s -- $newversion
+```
+Wait till synced.
+
+Check status:
+```
+curl localhost:26657/status | jq
+```
+
+Check logs
+```
+tail -f -n100 /var/log/chain.err.log
+```
+
+Turn on crond and edit `env.sh` to new version:
+```
+crond
+pacman -Sy --noconfirm vim
+vim $HOME/env.sh
+```
+
+Remove backup data:
+```
+rm -rf $HOME/backup
+```
+
+### 6. Update Registry
 
 Go to github `pull` fork repo [cosmosia](https://github.com/notional-labs/cosmosia) ->> `Sync Fork`
 
