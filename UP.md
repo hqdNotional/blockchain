@@ -123,7 +123,18 @@ tmux new -s upgrade
 tmux attach -t upgrade
 ```
 
-New version:
+Backup data:
+```
+cd
+sh $HOME/env.sh
+cp -R $node_home /root/backup
+```
+
+watch copy progress:
+```
+watch -n 1 du -sh $HOME/backup
+```
+
 ```
 read -p "Enter new version [v2.0.0]:" newversion
 killall crond
@@ -153,6 +164,12 @@ crond
 pacman -Sy --noconfirm vim
 vim $HOME/env.sh
 ```
+
+Remove backup data:
+```
+rm -rf $HOME/backup
+```
+
 ### 5. Update Registry
 
 Go to github `pull` fork repo [cosmosia](https://github.com/notional-labs/cosmosia) ->> `Sync Fork`
