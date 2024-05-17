@@ -15,6 +15,7 @@ Eg: `osmosis`, `osmosis-testnet`, `osmosis-archived`, `osmosis-pruned`
 read -p "Enter service name [bitsong]:" service
 docker service ps $(docker service ls | grep $service | grep -E "rpc_$service\\_" | awk '{print $2}')
 docker service ps $(docker service ls | grep $service | grep -E "snapshot_$service " | awk '{print $2}')
+docker service ps $(docker service ls | grep $service | grep -E $service"-archive-sub" | awk '{print $2}')
 ```
 ___
 ### 2. Upgrade RPC
@@ -108,11 +109,11 @@ pacman -Sy --noconfirm vim
 vim $HOME/env.sh
 ```
 ___
-### 4. Cosmos Snapshot
+### 4. Archive sub
 **Archive sub**:
 ```
 read -p "Enter service name [bitsong]:" service
-docker exec -it $(docker ps -a | grep $service | grep -E "$service_archive_sub\." | awk '{print $1}') /bin/bash
+docker exec -it $(docker ps -a | grep $service | grep -E $service"-archive-sub" | awk '{print $1}') /bin/bash
 ```
 
 Install and start new tmux session:
@@ -131,7 +132,7 @@ cat ~/env.sh
 
 Upgrade use script:
 ```
-curl -Ls -o- https://raw.githubusercontent.com/notional-labs/cosmosia/main/rpc/scripts/update_config.sh | bash -s -- 2
+curl -Ls -o- https://raw.githubusercontent.com/notional-labs/cosmosia/main/rpc/scripts/update_config.sh | bash -s -- 1
 curl -Ls -o- https://raw.githubusercontent.com/notional-labs/cosmosia/main/rpc/scripts/upgrading.sh | bash -s -- $newversion
 ```
 Wait till synced.
