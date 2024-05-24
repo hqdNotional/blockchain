@@ -3,6 +3,7 @@
 ### 1. Find containers and nodes
 Install and start new tmux session:
 ```
+pacman -Syyu --noconfirm tmux
 pacman -Sy --noconfirm tmux
 tmux new -s upgrade
 tmux attach -t upgrade
@@ -27,6 +28,7 @@ docker exec -it $(docker ps -a | grep $service | grep -E "rpc_$service\\_" | awk
 
 Install and start new tmux session:
 ```
+pacman -Syyu --noconfirm tmux
 pacman -Sy --noconfirm tmux
 tmux new -s upgrade
 tmux attach -t upgrade
@@ -73,6 +75,7 @@ docker exec -it $(docker ps -a | grep $service | grep -E "snapshot_$service\." |
 
 Install and start new tmux session:
 ```
+pacman -Syyu --noconfirm tmux
 pacman -Sy --noconfirm tmux
 tmux new -s upgrade
 tmux attach -t upgrade
@@ -118,6 +121,7 @@ docker exec -it $(docker ps -a | grep $service | grep -E $service"-archive-sub" 
 
 Install and start new tmux session:
 ```
+pacman -Syyu --noconfirm tmux
 pacman -Sy --noconfirm tmux
 tmux new -s upgrade
 tmux attach -t upgrade
@@ -179,6 +183,7 @@ docker exec -it $(docker ps -a | grep $service | grep -E "snapshot_"$service"-ar
 
 Install and start new tmux session:
 ```
+pacman -Syyu --noconfirm tmux
 pacman -Sy --noconfirm tmux
 tmux new -s upgrade
 tmux attach -t upgrade
