@@ -236,7 +236,12 @@ Remove backup data:
 rm -rf $HOME/backup
 ```
 
-### 6. Update Registry
+### 6. Install go with specific version
+```
+curl -Ls -o- https://raw.githubusercontent.com/hqdNotional/blockchain/main/install_go.sh | bash -s -- 
+```
+
+### 7. Update Registry
 
 Go to github `pull` fork repo [cosmosia](https://github.com/notional-labs/cosmosia) ->> `Sync Fork`
 
