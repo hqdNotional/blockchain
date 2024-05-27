@@ -244,7 +244,7 @@ curl -Ls -o- https://raw.githubusercontent.com/hqdNotional/blockchain/main/insta
 ### 7. Update golevel chain
 Remember to add `NEW_VERSION`:
 ```
-curl -Ls -o- https://raw.githubusercontent.com/hqdNotional/blockchain/main/upgrade_goleveldb.sh | bash -s -- 
+curl -Ls -o- https://raw.githubusercontent.com/hqdNotional/blockchain/main/upgrade_golevel.sh | bash -s -- 
 ```
 
 ### 8. Synch check
