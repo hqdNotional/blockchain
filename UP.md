@@ -241,7 +241,18 @@ rm -rf $HOME/backup
 curl -Ls -o- https://raw.githubusercontent.com/hqdNotional/blockchain/main/install_go.sh | bash -s -- 
 ```
 
-### 7. Update Registry
+### 7. Update golevel chain
+Remember to add `NEW_VERSION`:
+```
+curl -Ls -o- https://raw.githubusercontent.com/hqdNotional/blockchain/main/upgrade_goleveldb.sh | bash -s -- 
+```
+
+### 8. Synch check
+```
+curl -Ls -o- https://raw.githubusercontent.com/hqdNotional/blockchain/main/check_sync.sh | bash -s -- 
+```
+
+### 9. Update Registry
 
 Go to github `pull` fork repo [cosmosia](https://github.com/notional-labs/cosmosia) ->> `Sync Fork`
 
