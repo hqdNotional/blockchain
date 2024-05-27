@@ -42,7 +42,7 @@ fi
 build_binary () {
   
 # get function args
-new_version = $1
+new_version="$1"
 
 # get repository name
 repo_name=$(basename $git_repo |cut -d. -f1)
