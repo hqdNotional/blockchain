@@ -24,7 +24,7 @@ new_version="$1"
 # check if env.sh exists
 if [ -f $HOME/env.sh ]
 then
-  sh $HOME/env.sh
+  source $HOME/env.sh
 else
   echo "No env.sh found"
   exit
