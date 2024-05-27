@@ -1,7 +1,9 @@
 #!/bin/bash
 
+# get new version as argument
 new_version = $1
 
+# check if env.sh exists
 if [ -f $HOME/env.sh ]
 then
   sh $HOME/env.sh
@@ -10,6 +12,7 @@ else
   exit
 fi
 
+# check if provide new version
 if [ -z $new_version ]
 then
   echo "Missing arguments"
@@ -18,15 +21,24 @@ then
   exit
 fi
 
-cd $node_repo
+# get repository name
+repo_name=$(basename $git_repo |cut -d. -f1)
 
+# change directory to repository name
+cd $repo_name
+
+# fetch latest commits
 git reset --hard
 git fetch --all --tag
 
+# checkout to new version
 git checkout $new_version
 
+# stop chain
 supervisorctl stop chain
 
+# build new binary
 make install
 
+# start chain
 supervisorctl start chain
