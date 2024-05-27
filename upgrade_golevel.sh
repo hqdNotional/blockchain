@@ -19,7 +19,7 @@ white='\033[1;37m'
 nc='\033[0m' # No Color
 
 # get new version as argument
-new_version = $1
+new_version="$1"
 
 # check if env.sh exists
 if [ -f $HOME/env.sh ]
