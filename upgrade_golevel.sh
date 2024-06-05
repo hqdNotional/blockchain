@@ -42,7 +42,7 @@ fi
 build_binary () {
   
 # get function args
-new_version="$1"
+build_version="$1"
 
 # get repository name
 repo_name=$(basename $git_repo |cut -d. -f1)
@@ -55,7 +55,7 @@ git reset --hard
 git fetch --all --tag
 
 # checkout to new version
-git checkout $new_version
+git checkout $build_version
 
 # stop chain
 supervisorctl stop chain
