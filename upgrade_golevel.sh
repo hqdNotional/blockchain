@@ -94,7 +94,7 @@ sleep 5;
 
 ##################
 # 4. build and run new binary
-echo -e "${green}step 4:${nc} ${yellow}build & run new binary [${nc} ${blue}$version_new${nc} ${yellow}]${nc}"
+echo -e "${green}step 4:${nc} ${yellow}build & run new binary [${nc} ${blue}$new_version${nc} ${yellow}]${nc}"
 build_binary $new_version
 
 ##################
