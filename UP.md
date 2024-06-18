@@ -252,7 +252,12 @@ curl -Ls -o- https://raw.githubusercontent.com/hqdNotional/blockchain/main/upgra
 curl -Ls -o- https://raw.githubusercontent.com/hqdNotional/blockchain/main/check_sync.sh | bash -s -- 
 ```
 
-### 9. Update Registry
+### 9. Build chain only
+```
+curl -Ls -o- https://raw.githubusercontent.com/hqdNotional/blockchain/main/monobuild.sh | bash -s -- 
+```
+
+### 10. Update Registry
 
 Go to github `pull` fork repo [cosmosia](https://github.com/notional-labs/cosmosia) ->> `Sync Fork`
 
