@@ -253,8 +253,14 @@ curl -Ls -o- https://raw.githubusercontent.com/hqdNotional/blockchain/main/check
 ```
 
 ### 9. Build chain only
+PebbleDB:
 ```
-curl -Ls -o- https://raw.githubusercontent.com/hqdNotional/blockchain/main/monobuild.sh | bash -s -- 
+curl -Ls -o- https://raw.githubusercontent.com/hqdNotional/blockchain/main/mono_pebble.sh | bash -s -- 
+```
+
+GolevelDB:
+```
+curl -Ls -o- https://raw.githubusercontent.com/hqdNotional/blockchain/main/mono_golevel.sh | bash -s -- 
 ```
 
 ### 10. Update Registry
