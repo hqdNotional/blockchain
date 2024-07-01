@@ -98,7 +98,7 @@ docker service ps proxy_static
 
 ssh to `node` that running `proxy_static`
 ```
-docker exec -it $(docker ps -a | grep $service | grep -E "proxy_static\\_" | awk '{print $1}') /bin/bash
+docker exec -it $(docker ps -a | grep proxy_static | awk '{print $1}') /bin/bash
 ```
 
 **Edit nginx files**:
