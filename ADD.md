@@ -42,6 +42,13 @@ ssh to `server` that will runs `new chain` Eg: `cosmosia6` on `chain_registry.in
 
 **Create folder**:
 ```
+pacman -Syyu --noconfirm tmux
+pacman -Sy --noconfirm tmux
+tmux new -s upgrade
+tmux attach -t upgrade
+```
+
+```
 export CHAIN=
 ```
 
