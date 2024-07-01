@@ -135,7 +135,7 @@ snapshot_node = "cosmosia33"
 snapshot_storage_node = "cosmosia22"
 ```
 
-**SSH**
+**TMUX**
 ```
 pacman -Sy --noconfirm tmux
 tmux new -s add
@@ -158,6 +158,13 @@ ssh to `node` that run `new snapshot`:
 ```
 read -p "Enter service name [bitsong]:" service
 docker exec -it $(docker ps -a | grep $service | grep -E "snapshot_$service\." | awk '{print $1}') /bin/bash
+```
+
+```
+pacman -Syyu --noconfirm tmux
+pacman -Sy --noconfirm tmux
+tmux new -s upgrade
+tmux attach -t upgrade
 ```
 
 ```
