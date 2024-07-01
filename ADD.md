@@ -152,6 +152,11 @@ git pull
 sh docker_service_create.sh $CHAIN
 ```
 
+Remove snapshot if there is wrong config:
+```
+docker service rm snapshot_$CHAIN
+```
+
 **SSH**
 
 ssh to `node` that run `new snapshot`:
