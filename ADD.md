@@ -116,6 +116,25 @@ nginx -s reload
 ```
 
 ### 5. Create new services ( snapshot, rpc, lb, apigw )
+**CONFIG**
+go to config page and add:
+RPC:
+```
+cosmosia.rpc.$CHAIN
+```
+```
+node_1 = "cosmosia3"
+```
+
+SNAPSHOT:
+```
+cosmosia.snapshot.$CHAIN
+```
+```
+snapshot_node = "cosmosia33"
+snapshot_storage_node = "cosmosia22"
+```
+
 **SSH**
 ```
 pacman -Sy --noconfirm tmux
