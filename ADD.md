@@ -49,6 +49,10 @@ tmux attach -t upgrade
 ```
 
 ```
+pacman -Sy --noconfirm sudo
+```
+
+```
 export CHAIN=
 ```
 
