@@ -191,7 +191,8 @@ make install
 Convert `data` script:
 ```
 supervisorctl stop chain
-curl -Ls -o- https://raw.githubusercontent.com/notional-labs/cosmosia/main/snapshot/scripts/level2pebble_data.sh | bash -s -- $HOME/.$CHAIN/data
+sh $HOME/env.sh
+curl -Ls -o- https://raw.githubusercontent.com/notional-labs/cosmosia/main/snapshot/scripts/level2pebble_data.sh | bash -s -- $node_home/data
 ```
 
 **Start Chain**
