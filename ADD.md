@@ -5,6 +5,10 @@ export CHAIN=
 ```
 
 ```
+cd
+rm -rf cosmosia
+git clone https://github.com/notional-labs/cosmosia
+cd cosmosia
 cat << EOF | sudo tee -a data/chain_registry.ini
 [$CHAIN]
 config = "https://raw.githubusercontent.com/notional-labs/cosmosia/main/data/$CHAIN.ini"
