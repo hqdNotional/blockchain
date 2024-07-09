@@ -41,34 +41,41 @@ fi
 
 build_binary () {
   
-# get function args
-build_version="$1"
-
-# get repository name
-repo_name=$(basename $git_repo |cut -d. -f1)
-
-# change directory to repository name
-cd $repo_name
-
-# fetch latest commits
-git reset --hard
-git fetch --all --tag
-
-# checkout to new version
-git checkout $build_version
-
-# stop chain
-supervisorctl stop chain
-sleep 5
-
-# build new binary
-make install
-sleep 5
-
-# start chain
-supervisorctl start chain
-sleep 5
-
+  # get function args
+  build_version="$1"
+  
+  # get repository name
+  repo_name=$(basename $git_repo |cut -d. -f1)
+  
+  # change directory to repository name
+  cd $repo_name
+  
+  # fetch latest commits
+  git reset --hard
+  git fetch --all --tag
+  
+  # checkout to new version
+  git checkout $build_version
+  
+  # stop chain
+  supervisorctl stop chain
+  sleep 5
+  
+  # check if custom build script exists
+  if [[ -z $build_script ]]; then
+    # build new binary
+    make install
+    sleep 5
+  else
+    # build new binary with custom build script
+    p_version=${build_version}
+    source <(curl -Ls -o- "$build_script")
+  fi
+  
+  # start chain
+  supervisorctl start chain
+  sleep 5
+  
 }
 
 ##################
